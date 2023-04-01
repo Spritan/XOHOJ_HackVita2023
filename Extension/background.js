@@ -12,7 +12,20 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((error) => console.error(error));
-  } else if (request.action === "getTabUrl") {
+  } 
+  else if (request.type === "post_certificate") {
+    fetch("http://192.168.247.28:8002/api/notes/cert/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(request.data),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+  }
+  else if (request.action === "getTabUrl") {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       var url = tabs[0].url;
       sendResponse({ url: url });
@@ -38,3 +51,8 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
 });
 
 
+chrome.webNavigation.onHistoryStateUpdated.addListener(function(data) {
+	chrome.tabs.get(data.tabId, function(tab) {
+		chrome.tabs.executeScript(data.tabId, {code: 'if (typeof AddScreenshotButton !== "undefined") { AddScreenshotButton(); }', runAt: 'document_start'});
+	});
+}, {url: [{hostSuffix: '.youtube.com'}]});

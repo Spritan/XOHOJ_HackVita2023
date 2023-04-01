@@ -5,7 +5,9 @@
   "permissions": [
     "http://192.168.247.28:8002/",
     "tabs",
-    "https://*.youtube.com/*"
+    "https://*.youtube.com/*",
+    "webNavigation",
+		"storage"
   ],
   "browser_action": {
     "default_title": "My Chrome Extension",

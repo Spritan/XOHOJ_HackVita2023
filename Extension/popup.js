@@ -82,12 +82,12 @@ const viewBookmarks = (currentBookmarks = []) => {
 };
 
 const onPlay = async (e) => {
-//   const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
+  const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
 
-//   chrome.tabs.sendMessage(activeTab.id, {
-//     type: "PLAY",
-//     value: bookmarkTime,
-//   });
+  chrome.tabs.sendMessage(activeTab.id, {
+    type: "PLAY",
+    value: bookmarkTime,
+  });
 };
 
 const setBookmarkAttributes = (src, eventListener, controlParentElement) => {
