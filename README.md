@@ -1,2 +1,2 @@
-# DataCrew_HackVita2023
-<hr/>
+# Xohoj: Study Made Easy
+### By: Team Data Crew
