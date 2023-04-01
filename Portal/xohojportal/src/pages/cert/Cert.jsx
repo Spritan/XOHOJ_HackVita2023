@@ -53,7 +53,7 @@ const Cert = () => {
             </Sidebar>
             <main style={{ width: "80%" }}>
                 {rows.map(eachData => (
-                    <BasicCard title="bggb" completion= {67} certified= "yes"/>
+                    <BasicCard title={eachData.title} completion= {eachData.completed? eachData.completed: 0} certified= "yes" id={eachData.id}/>
                 ))}
                 
             </main>

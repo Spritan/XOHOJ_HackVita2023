@@ -5,6 +5,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate, Link } from 'react-router-dom';
 
 const bull = (
   <Box
@@ -15,7 +16,10 @@ const bull = (
   </Box>
 );
 
-export default function BasicCard({title, completion, certified}) {
+export default function BasicCard({title, completion, certified, id}) {
+
+  const navigate = useNavigate()
+
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -30,7 +34,7 @@ export default function BasicCard({title, completion, certified}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Link to={`/certs/${id}`} size="small">Learn More</Link>
       </CardActions>
     </Card>
   );

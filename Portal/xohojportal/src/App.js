@@ -4,6 +4,7 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Home from './pages/home/Home';
 import Cert from './pages/cert/Cert';
+import Certs from './pages/certs/Certs';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cert" element={<Cert />} />
+          <Route path="/certs/:id" element={<Certs />} />
         </Routes>
       </BrowserRouter>
     </>
