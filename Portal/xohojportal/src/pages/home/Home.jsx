@@ -15,6 +15,7 @@ import FetchedNotes from "../../components/FetchedNotes";
 import NotesList from "../../components/NotesList";
 import axios from "axios";
 import jsonToMarkdown from 'json-to-markdown';
+import { Link } from 'react-router-dom'
 
 // AIzaSyDimfJEO9_jZTXC7KIkmwxvOpAmA6vqEkU
 
@@ -96,7 +97,7 @@ const Home = () => {
     const markdownData = jsonToMarkdown(jsonData);
     const obsidian = window.app;
 
-obsidian.vault.createMarkdownFile('my-note-title.md', markdownData);
+    obsidian.vault.createMarkdownFile('my-note-title.md', markdownData);
 
   };
 
@@ -114,12 +115,17 @@ obsidian.vault.createMarkdownFile('my-note-title.md', markdownData);
             {" "}
             <h2>Admin</h2>
           </MenuItem>
-          <MenuItem icon={<HomeOutlinedIcon />}>Home</MenuItem>
-          <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
+          <MenuItem icon={<HomeOutlinedIcon />} >
+            <Link to="/" style={{ padding: 5 }}>
+              Home
+            </Link></MenuItem>
+          <MenuItem icon={<ReceiptOutlinedIcon />}><Link to="/cert" style={{ padding: 5 }}>
+          Certificate
+            </Link></MenuItem>
+          {/* <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
           <MenuItem icon={<ReceiptOutlinedIcon />}>Profile</MenuItem>
           <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
+          <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem> */}
         </Menu>
       </Sidebar>
       <main style={{ width: "100%" }}>
