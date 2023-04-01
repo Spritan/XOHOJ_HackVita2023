@@ -101,6 +101,17 @@ const Home = () => {
 
   };
 
+  const handlePdf = () => {
+    var printContents = document.getElementById("printible").innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+  }
+
   return (
     <div className={`${darkMode && "dark-mode"}`} style={{ display: "flex" }}>
       <Sidebar style={{ height: "100vh" }}>
@@ -128,7 +139,7 @@ const Home = () => {
           <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem> */}
         </Menu>
       </Sidebar>
-      <main style={{ width: "100%" }}>
+      <main id="printible" style={{ width: "100%" }}>
         {/* <button onClick={() => collapseSidebar()}>Collapse</button> */}
         <div className="container" style={{ marginLeft: "5rem" }}>
           <Header handleToggleDarkMode={setDarkMode} />
@@ -145,6 +156,10 @@ const Home = () => {
             <button className="btn-doc-convert" onClick={handleConvert}>
               {" "}
               Convert to obsedian{" "}
+            </button>
+            <button className="btn-doc-convert" onClick={handlePdf}>
+              {" "}
+              Print as PDF{" "}
             </button>
           </div>
         </div>
