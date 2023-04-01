@@ -1,15 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
-      }
-    </style>
-  </head>
-  <body>
-    <button id="changeColor"></button>
-  </body>
-</html>
+<link href="popup.css" rel="stylesheet" type="text/css" />
+<script type="module" src="popup.js"></script>
+
+<div class="container" id="loggedOut">
+  <div>
+    <div class="title">Xohoz</div>
+
+    <div class="loginContainer">
+      <a class="loginBtn" href="">Login Now </a> 
+
+    </div>
+  </div>
+</div>
+
+<div class="container" id="loggedIn">
+  <div id="printable">
+    <h2 id="heading" contenteditable="true">Enter to add title</h2>
+    <div>
+      <h3 id="subTitle" contenteditable="true"> Enter Subtitle</h3>
+      <div class="title">Your bookmarks for this video</div>
+  
+      <div class="bookmarks" id="bookmarks"></div>
+    </div>
+  </div>
+  <footer>
+    <button id="printButton" >Print</button>
+  </footer>
+</div>
