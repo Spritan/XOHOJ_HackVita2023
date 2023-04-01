@@ -19,7 +19,7 @@
       timestamped: "Bookmark at " + getTime(currentTime),
       currentTime : currentTime,
       Topic : "",
-      title: "No Title",
+      title: document.getElementsByClassName("ytp-title-note-box")[0].value,
       content: document.getElementsByClassName("ytp-note-box")[0].value,
       copied: ""
     //   snaped: "",
@@ -45,13 +45,21 @@
 
       const noteBox = document.createElement("INPUT");
       noteBox.setAttribute("type", "text");
-      noteBox.setAttribute("value", "Click me");
+      noteBox.setAttribute("value", "Enter Note");
       noteBox.className = "ytp-note-box";
+
+      const TitleBox = document.createElement("INPUT");
+      TitleBox.setAttribute("type", "text");
+      TitleBox.setAttribute("value", "Enter Title");
+      TitleBox.className = "ytp-title-note-box";
+
+
 
       youtubeLeftControls =
         document.getElementsByClassName("ytp-left-controls")[0];
       youtubePlayer = document.getElementsByClassName("video-stream")[0];
 
+      youtubeLeftControls.appendChild(TitleBox);
       youtubeLeftControls.appendChild(noteBox);
       youtubeLeftControls.appendChild(bookmarkBtn);
 
@@ -90,3 +98,9 @@ const getTime = (t) => {
 
   return date.toISOString().substr(11, 8);
 };
+
+// window.addEventListener('keydown', stopPropagation, true);
+
+// function stopPropagation(e) {
+//   e.stopPropagation();
+// }

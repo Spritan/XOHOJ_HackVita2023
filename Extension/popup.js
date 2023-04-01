@@ -32,25 +32,32 @@ function printDiv(divName = "printable") {
 // ***********************************
 
 const addNewBookmark = (bookmarks, bookmark) => {
+  // const bookmarks = document.querySelector('.bookmarks')
   const newBookmarkElement = document.createElement("div");
   const bookmarkTitleElement = document.createElement("div");
+  const bookmarkNoteTitleElement = document.createElement("div");
   const bookmarkSubTitleElement = document.createElement("div");
   const controlsElement = document.createElement("div");
   const actionParentElement = document.createElement("div");
 
+  bookmarkNoteTitleElement.textContent = bookmark.title;
+  controlsElement.className = "bookmark-title-note";
+
   bookmarkTitleElement.textContent = bookmark.timestamped;
   controlsElement.className = "bookmark-controls";
 
+
   bookmarkSubTitleElement.className = "bookmark-subTitle"
   bookmarkSubTitleElement.textContent = bookmark.content
-
+  
   setBookmarkAttributes("play", onPlay, controlsElement);
   //     setBookmarkAttributes("delete", onDelete, controlsElement);
 
   actionParentElement.className = "bookmark";
   newBookmarkElement.id = "bookmark-" + bookmark.currentTime;
+  newBookmarkElement.className = "bookmark-taken";
   actionParentElement.setAttribute("timestamp", bookmark.currentTime);
-
+      actionParentElement.appendChild(bookmarkNoteTitleElement);
       actionParentElement.appendChild(bookmarkTitleElement);
       actionParentElement.appendChild(controlsElement);
       newBookmarkElement.appendChild(actionParentElement);

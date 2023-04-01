@@ -32,13 +32,13 @@
   
   .bookmark {
     display: flex;
-    border-bottom-color: #00254d;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-radius: 0.8rem;
+    /* border-bottom-color: #00254d;
+    border-bottom-width: 5px;
+    border-bottom-style: solid; */
     padding: 3px;
     padding-bottom: 7px;
     margin-bottom: 7px;
+    overflow: auto;
   }
   
   .bookmark-title {
@@ -61,3 +61,55 @@
     width: 200px;
   } */
   /* height: 100vh; */
+
+
+  .bookmark-taken{
+    padding: .5em .5em;
+    border-style: solid;
+    border-radius: 2px;
+    border-color: #222;
+    margin: .2em;
+    /* display: flex;
+    flex-direction: column; */
+  }
+  .bookmark-taken .bookmark{
+    display: flex;
+    flex-direction: column;
+  }
+  .bookmark-taken .bookmark:first-child{
+    font-size: larger;
+    font-weight: 500;
+  }
+  /* CSS */
+  .button-31 {
+    background-color: #222;
+    border-radius: 4px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+    min-height: 44px;
+    min-width: 10px;
+    outline: none;
+    overflow: hidden;
+    padding: 9px 20px 8px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+  }
+  
+  .button-31:hover,
+  .button-31:focus {
+    opacity: .75;
+  }
