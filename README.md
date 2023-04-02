@@ -4,7 +4,7 @@
 
 ### By: Team Data Crew
 ## Introduction
-![Background Video](https://youtu.be/BYO1TZTzHAI)
+[Background Video](https://youtu.be/BYO1TZTzHAI)
 
 With the expansion of online study resources, it is much more likely that students today will spend hours on end browsing multiple websites to gather data. Thus it is essential that the students are able to maintain a record from all the sites that they have referred to during their reference. 
 
@@ -52,11 +52,11 @@ python manage.py runserver
 ```
 #### Extension
 
-![Use extension][https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/]
+[Use extension](https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/)
 
 ## Demo
 
-- ![Frontend][https://xohoj.netlify.app/]
+- [Frontend](https://xohoj.netlify.app/)
 
 ## Techstack
 - Frontend: ReactJs
