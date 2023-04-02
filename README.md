@@ -52,7 +52,7 @@ python manage.py runserver
 ```
 #### Extension
 
-[How to install the unpacked extension in Chrome?](https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/)
+- [How to install the unpacked extension in Chrome?](https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/)
 
 ## Demo
 
