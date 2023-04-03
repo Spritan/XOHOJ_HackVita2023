@@ -2,7 +2,9 @@
 ![Goal](https://img.shields.io/badge/Goal-Productivity-brightgreen)
 ![focus](https://img.shields.io/badge/Tech-Web_Dev-brightgreen)
 
+
 ### By: Team Data Crew
+#### Won 2nd Prize in Hack Vita Organised by Google DSC - Jorhat Engineering College and E Cell - JEC.
 ## Introduction
 [Background Video](https://youtu.be/BYO1TZTzHAI)
 
