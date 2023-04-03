@@ -2,7 +2,7 @@ import openai
 import gradio
 import os
 
-openai.api_key = "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"
+openai.api_key = ""
 
 messages = [{"role": "system", "content": "you can answer anything"}]
 
