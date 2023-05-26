@@ -17,7 +17,7 @@ const Login = () => {
         password: password
     })
     localStorage.setItem("token", response.data.token.access);
-    navigate('/')
+    navigate('/home')
   }
 
   return (
