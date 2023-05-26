@@ -26,7 +26,7 @@ const Register = () => {
     );
     console.log(response);
     if (response) {
-      navigate("/");
+      navigate("/home");
     } else {
       console.log("error");
     }
