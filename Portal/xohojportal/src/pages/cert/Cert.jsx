@@ -43,7 +43,7 @@ const Cert = () => {
                         <h2>Admin</h2>
                     </MenuItem>
                     <MenuItem icon={<HomeOutlinedIcon />} >
-                        <Link to="/" style={{ padding: 5 }}>
+                        <Link to="/home" style={{ padding: 5 }}>
                             Home
                         </Link></MenuItem>
                     <MenuItem icon={<ReceiptOutlinedIcon />}><Link to="/cert" style={{ padding: 5 }}>
