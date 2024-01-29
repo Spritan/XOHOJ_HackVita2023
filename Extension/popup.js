@@ -1,7 +1,5 @@
 let activeTab = "";
 
-// --------------Login Feature-------------
-
 let isLoggedIn = true;
 
 if (isLoggedIn) {
@@ -49,7 +47,7 @@ const addNewBookmark = (bookmarks, bookmark) => {
 
   bookmarkSubTitleElement.className = "bookmark-subTitle"
   bookmarkSubTitleElement.textContent = bookmark.content
-  
+
   setBookmarkAttributes("play", onPlay, controlsElement);
   //     setBookmarkAttributes("delete", onDelete, controlsElement);
 
@@ -57,11 +55,11 @@ const addNewBookmark = (bookmarks, bookmark) => {
   newBookmarkElement.id = "bookmark-" + bookmark.currentTime;
   newBookmarkElement.className = "bookmark-taken";
   actionParentElement.setAttribute("timestamp", bookmark.currentTime);
-      actionParentElement.appendChild(bookmarkNoteTitleElement);
-      actionParentElement.appendChild(bookmarkTitleElement);
-      actionParentElement.appendChild(controlsElement);
-      newBookmarkElement.appendChild(actionParentElement);
-      newBookmarkElement.appendChild(bookmarkSubTitleElement);
+  actionParentElement.appendChild(bookmarkNoteTitleElement);
+  actionParentElement.appendChild(bookmarkTitleElement);
+  actionParentElement.appendChild(controlsElement);
+  newBookmarkElement.appendChild(actionParentElement);
+  newBookmarkElement.appendChild(bookmarkSubTitleElement);
   bookmarks.appendChild(newBookmarkElement);
 };
 
@@ -104,9 +102,9 @@ const setBookmarkAttributes = (src, eventListener, controlParentElement) => {
 document.addEventListener("DOMContentLoaded", async () => {
 
   chrome.runtime.sendMessage({ action: "getTabUrl" }, function (response) {
-    activeTab  = response.url;
-    if(response.url){
-        fetch("http://192.168.247.28:8002/api/notes/")
+    activeTab = response.url;
+    if (response.url) {
+      fetch("http://192.168.247.28:8002/api/notes/")
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -123,11 +121,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
-    }else{
-        const container = document.getElementsByClassName("container")[1];
+    } else {
+      const container = document.getElementsByClassName("container")[1];
 
-        container.innerHTML =
-          '<div class="title">This is not a youtube video page.</div>';
+      container.innerHTML =
+        '<div class="title">This is not a youtube video page.</div>';
     }
   });
 });
