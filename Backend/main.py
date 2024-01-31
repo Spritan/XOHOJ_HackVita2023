@@ -1,55 +1,32 @@
-import pprint
-import logging
-import colorlog
-import traceback
-from pprint import pformat
-from dotenv import load_dotenv
-
-from typing import Union
-
 from fastapi import FastAPI
-from fastapi.logger import logger
 from fastapi.middleware.cors import CORSMiddleware
 
-from api import notes
-from core.config import settings
-from core.metadata import tags_metadata
+from db.mongodb_connect import connectDB
+
+import core.config as core
+
+# import settings, cors_middleware
+from api import notes, auth
+from utils.loggingUtils import logger
+from docs.openApiTags import tags_metadata
+from docs.openApiStatusCodes import AddedOpenAPiStatusCodes
+
 
 # ------------------------ Init FastAPI -------------------------#
-app = FastAPI(title=settings.app_name)
+app = FastAPI(title=core.settings.app_name,openapi_tags=tags_metadata, responses=AddedOpenAPiStatusCodes) # type: ignore
 
-# -------------------------CORS Config---------------------------#
-load_dotenv()
-
-origins = ["*"]
+connectDB()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=core.origins,  # type: ignore
+    allow_credentials=core.allow_credentials,  # type: ignore
+    allow_methods=["*"],  # type: ignore
+    allow_headers=core.allow_headers,  # type: ignore
 )
-
-# -------------------------logger Config---------------------------#
-handler = logging.StreamHandler()
-logging.getLogger().setLevel(logging.DEBUG)
-handler.setFormatter(
-    colorlog.ColoredFormatter(
-        "%(log_color)s%(levelname)-8s%(reset)s - %(asctime)s - %(message)s",
-        log_colors={
-            "DEBUG": "cyan",
-            "INFO": "green",
-            "WARNING": "yellow",
-            "ERROR": "red",
-            "CRITICAL": "red,bg_white",
-        },
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-)
-logger.addHandler(handler)
 
 # ------------------------------Routes----------------------------#
 
-app.include_router(notes.router, prefix="/api/v2/notes", tags=["notes"])
-
+## Notes
+app.include_router(notes.router, prefix="/api/v2", tags=["Notes"])
+app.include_router(auth.router, prefix="/api/v2", tags=["Auth"])

@@ -1,6 +1,6 @@
 tags_metadata = [
     {
-        "name": "Users",
+        "name": "Auth",
         "description": "Operations with users.",
     },
     {
