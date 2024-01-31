@@ -5,6 +5,8 @@ from jose import jwt
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer
 
+from dotenv import load_dotenv
+load_dotenv()
 # App config
 class Settings(BaseSettings):
     app_name: str = "Xohoj backend"

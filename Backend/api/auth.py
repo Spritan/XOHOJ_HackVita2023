@@ -1,13 +1,15 @@
+from datetime import timedelta
+import json
 import traceback
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, Response
 from fastapi.responses import JSONResponse
 
 from db.models.user import User
 from db.mongodb_connect import NotUniqueError
 
-from schemas.userschemas import newUser
-from utils.authUtils import get_password_hash
+from schemas.userschemas import LoginRequestBody, newUser
+from utils.authUtils import authenticate_user, create_access_token, get_password_hash
 
 router = APIRouter(prefix="/auth")
 
@@ -102,3 +104,54 @@ def signup_admin(newUser: newUser):
         }
         return JSONResponse(content=error_message, status_code=501)  # type: ignore
 
+@router.post("/login")
+def login(request_body: LoginRequestBody, response: Response) -> dict[str, str|int]| None:
+    """
+    Log in a user.
+
+    Parameters:
+    - request_body (LoginRequestBody): The login request body containing email and password.
+    - response (Response): The FastAPI Response object for setting cookies.
+
+    Returns:
+    - dict: A dictionary containing the access token, user email, and user type.
+      If authentication fails, returns None.
+
+    Raises:
+    - HTTPException: If incorrect email or password is provided (status code 400).
+    """
+    email = request_body.email
+    password = request_body.password
+
+    if authenticate_user(email, password):
+        access_token = create_access_token(
+            data={"sub": email}, expires_delta=timedelta(minutes=30)
+        )
+        user = json.loads(User.objects.get(email=email).to_json()) # type: ignore
+        response.set_cookie(
+            key="access_token",
+            value=access_token,
+            expires=timedelta(minutes=30), # type: ignore
+            httponly=True,  # This ensures the cookie is only accessible via HTTP
+            samesite="lax",  # Adjust this according to your security needs
+        )
+        return {"token": access_token, "user": email, "user_type":f"{user['user_type']}" }
+    else:
+        raise HTTPException(status_code=400, detail="Incorrect email or password")
+    
+@router.delete("/logout")
+def logout(response: Response) -> JSONResponse:
+    """
+    Log out a user.
+
+    Parameters:
+    - response (Response): The FastAPI Response object for deleting cookies.
+
+    Returns:
+    - JSONResponse: A json containing a message confirming successful logout.
+    """
+    response.delete_cookie(
+        key="access_token",
+        path="/",
+    )
+    return JSONResponse({"message": "Logged out successfully"})
